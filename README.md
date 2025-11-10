@@ -2,6 +2,11 @@
 
 ProCodeX is a modern coding practice platform built with Next.js (App Router). It includes a Monaco-powered code editor, problem solving workflow, and an Admin Panel (UI-only) for managing problems and submissions. The UI uses Tailwind CSS (v4) with shadcn/ui components and supports dark mode via next-themes.
 
+> 🔒 **Private Repository:** The full application source code is maintained privately at  
+> [github.com/mohdadnaanazam/procodex](https://github.com/mohdadnaanazam/procodex)
+
+---
+
 ### Tech Stack
 - Next.js 16 (App Router)
 - React 19
