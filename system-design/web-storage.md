@@ -1,3 +1,13 @@
+---
+title: "Web Storage Guide: Local Storage, Session Storage, Cookies, and IndexedDB"
+description: "Comprehensive guide to browser storage options: Local Storage, Session Storage, Cookies, and IndexedDB. Learn when to use each, their capabilities, limitations, and best practices."
+author: "ProCodeX Team"
+date: "2024-01-30"
+tags: ["web-storage", "local-storage", "session-storage", "cookies", "indexeddb", "browser-storage", "web-development"]
+section: "system-design"
+codepen: "https://codepen.io/SACHIN-CHAUHAN-the-builder/pen/dPMRNGB"
+---
+
 # Web Storage Guide: Local Storage, Session Storage, Cookies, and IndexedDB
 
 Understanding browser storage options is crucial for modern web development. This comprehensive guide covers all four major storage mechanisms: Local Storage, Session Storage, Cookies, and IndexedDB. Learn when to use each, their capabilities, limitations, and best practices.
