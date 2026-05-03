@@ -38,9 +38,8 @@ localStorage.getItem("theme");
 
 ```codepen
 url=https://codepen.io/kdbarwef-the-sasster/pen/EaNjjLG
-title=Local Storage Demo
-height=400
-defaultTab=html,result
+height=450
+defaultTab=css,result
 editable=true
 ```
 
