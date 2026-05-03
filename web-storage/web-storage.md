@@ -37,10 +37,9 @@ localStorage.getItem("theme");
 ### Interactive Demo
 
 ```codepen
-url=https://codepen.io/kdbarwef-the-sasster/pen/EaNjjLG
+url=https://codepen.io/chriscoyier/pen/gfdDu
 height=450
 defaultTab=css,result
-editable=true
 ```
 
 ---
