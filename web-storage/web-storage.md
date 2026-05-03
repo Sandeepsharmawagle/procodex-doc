@@ -34,6 +34,15 @@ localStorage.setItem("theme", "dark");
 localStorage.getItem("theme");
 ```
 
+### Interactive Demo
+
+```codepen
+url=https://codepen.io/henriquelothammer/pen/BaKXMjY
+title=To-Do List with LocalStorage
+height=400
+defaultTab=js,result
+```
+
 ---
 
 ## Session Storage
@@ -73,6 +82,15 @@ Once the tab is closed, the data is removed.
 sessionStorage.setItem("score", "50");
 ```
 
+### Interactive Demo
+
+```codepen
+url=https://codepen.io/JapperCat/pen/gOBQyBQ
+title=HTML5 Session Storage Demo
+height=400
+defaultTab=js,result
+```
+
 ---
 
 ## Cookies
@@ -106,6 +124,15 @@ Cookies are small pieces of data stored in the browser and sent to the server wi
 document.cookie = "user=raman";
 ```
 
+### Interactive Demo
+
+```codepen
+url=https://codepen.io/beaucarnes/pen/KmeRMx
+title=Cookies vs LocalStorage vs SessionStorage
+height=400
+defaultTab=js,result
+```
+
 ---
 
 ## IndexedDB
@@ -131,3 +158,16 @@ IndexedDB is a full database inside the browser. It is used for storing large an
 ```js
 const request = indexedDB.open("MyDB", 1);
 ```
+
+---
+
+## Comparison Table
+
+| Feature | Local Storage | Session Storage | Cookies | IndexedDB |
+|---------|--------------|-----------------|---------|-----------|
+| Size Limit | ~5MB | ~5MB | ~4KB | 100MB+ |
+| Expiry | Never | Tab close | Configurable | Never |
+| Shared Across Tabs | Yes | No | Yes | Yes |
+| Sent with HTTP | No | No | Yes | No |
+| Data Type | String | String | String | Any |
+| Async | No | No | No | Yes |
