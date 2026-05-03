@@ -37,7 +37,7 @@ localStorage.getItem("theme");
 ### Interactive Demo
 
 ```codepen
-url=https://codepen.io/web-dot-dev/pen/mdBVJOE
+url=https://codepen.io/kdbarwef-the-sasster/pen/EaNjjLG
 title=Local Storage Demo
 height=400
 defaultTab=html,result
