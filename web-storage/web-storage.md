@@ -38,7 +38,7 @@ localStorage.getItem("theme");
 
 ```codepen
 url=https://codepen.io/kdbarwef-the-sasster/pen/EaNjjLG
-height=450
+height=500
 defaultTab=css,result
 ```
 
