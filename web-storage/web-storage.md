@@ -38,8 +38,8 @@ localStorage.getItem("theme");
 
 ```codepen
 url=https://codepen.io/kdbarwef-the-sasster/pen/EaNjjLG
-height=600
-defaultTab=css,result
+height=400
+defaultTab=result
 ```
 
 ---
