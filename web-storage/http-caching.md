@@ -239,6 +239,145 @@ This says: "Cache for 1 year, and don't even bother checking - it will never cha
 
 ---
 
+## Code Examples
+
+### JavaScript: Fetch with Cache Control
+
+```js
+// Normal fetch - uses browser's default caching
+fetch('/api/data')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// Force fresh data - ignore cache
+fetch('/api/data', { cache: 'no-store' })
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// Validate cache first - check if changed
+fetch('/api/data', { cache: 'no-cache' })
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// Force reload - bypass cache completely
+fetch('/api/data', { cache: 'reload' })
+  .then(res => res.json())
+  .then(data => console.log(data));
+```
+
+### JavaScript: Cache Modes Explained
+
+```js
+// All fetch cache modes:
+
+// 'default' - Normal browser caching behavior
+fetch(url, { cache: 'default' });
+
+// 'no-store' - Don't read or write to cache
+fetch(url, { cache: 'no-store' });
+
+// 'reload' - Ignore cache, but update it with response
+fetch(url, { cache: 'reload' });
+
+// 'no-cache' - Always validate with server
+fetch(url, { cache: 'no-cache' });
+
+// 'force-cache' - Use cache even if stale
+fetch(url, { cache: 'force-cache' });
+
+// 'only-if-cached' - Only use cache, fail if not cached
+fetch(url, { cache: 'only-if-cached' });
+```
+
+### Node.js/Express: Setting Cache Headers
+
+```js
+const express = require('express');
+const app = express();
+
+// Static assets - cache for 1 year
+app.use('/static', express.static('public', {
+  maxAge: '1y',
+  immutable: true
+}));
+
+// API endpoint - no caching
+app.get('/api/user', (req, res) => {
+  res.set('Cache-Control', 'no-store, private');
+  res.json({ name: 'John' });
+});
+
+// Public data - cache for 5 minutes
+app.get('/api/posts', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300');
+  res.json([{ title: 'Hello' }]);
+});
+
+// HTML page - always validate
+app.get('/', (req, res) => {
+  res.set('Cache-Control', 'no-cache');
+  res.set('ETag', '"page-v1"');
+  res.sendFile('index.html');
+});
+```
+
+### Nginx: Cache Configuration
+
+```nginx
+# Static files - cache for 1 year
+location /static/ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
+
+# HTML files - always validate
+location ~* \.html$ {
+    add_header Cache-Control "no-cache";
+}
+
+# API responses - short cache
+location /api/ {
+    add_header Cache-Control "private, max-age=60";
+}
+
+# Sensitive data - no caching
+location /api/auth/ {
+    add_header Cache-Control "no-store, private";
+}
+```
+
+### Service Worker: Custom Caching
+
+```js
+// In service-worker.js
+const CACHE_NAME = 'my-cache-v1';
+
+// Cache static assets on install
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll([
+        '/',
+        '/styles.css',
+        '/app.js',
+        '/logo.png'
+      ]);
+    })
+  );
+});
+
+// Serve from cache, fallback to network
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request);
+    })
+  );
+});
+```
+
+---
+
 ## Common Caching Patterns
 
 ### Pattern 1: HTML Pages
