@@ -162,10 +162,82 @@ Cookies are small pieces of data sent to the server with every HTTP request.
 
 ### Key Characteristics
 
-- **4KB limit** - Very small storage
-- **Sent with every request** - Can slow down HTTP requests
+- **4KB limit per domain** - Very small storage
+- **Affects HTTP performance** - Sent with EVERY request, large cookies slow down your site
 - **Expiration control** - Can set when cookie expires
-- **Two types**: Session cookies (no expiry) and Persistent cookies (with expiry)
+- **Two types**:
+  - **Session Cookie** - No expiry date, deleted when browser closes
+  - **Persistent Cookie** - Has expiry date, stays until that date
+
+### How Cookie Expiration Works
+
+```
+No expiration date provided → Session Cookie → Expires on browser close
+Expiration date provided → Persistent Cookie → Expires on that date
+```
+
+> **Important:** If you don't set an expiration date, the cookie becomes a session cookie and will be deleted when the user closes their browser.
+
+### Cookie Attributes Explained
+
+| Attribute | What It Does | Example |
+|-----------|--------------|---------|
+| `HttpOnly` | **Cannot be read by JavaScript** - Protects from XSS attacks | `HttpOnly` |
+| `Secure` | **Only sent over HTTPS** - Protects from man-in-middle attacks | `Secure` |
+| `SameSite` | Controls cross-site requests | `SameSite=Strict` |
+| `Path` | Cookie only sent for this path | `Path=/user/` |
+| `Domain` | Cookie sent to all subdomains | `Domain=.example.com` |
+| `Expires` | When cookie expires | `Expires=Fri, 31 Dec 2025` |
+| `Max-Age` | Seconds until expiry | `Max-Age=86400` |
+
+### SameSite Values
+
+| Value | Behavior |
+|-------|----------|
+| `Strict` | Only sent from same site (most secure) |
+| `Lax` | Sent on top-level navigation (default) |
+| `None` | Sent on all requests (requires `Secure`) |
+
+### Cookie Attributes in Detail
+
+**HttpOnly** - Security First
+```js
+// ❌ Without HttpOnly - JavaScript can read it (vulnerable to XSS)
+document.cookie = "token=abc123";
+console.log(document.cookie); // "token=abc123" - Hackers can steal this!
+
+// ✅ With HttpOnly - Set by server, JavaScript CANNOT read it
+// Set-Cookie: token=abc123; HttpOnly
+// document.cookie won't show this cookie
+```
+
+**Secure** - HTTPS Only
+```js
+// Cookie only sent when connection is HTTPS
+document.cookie = "token=abc123; Secure";
+
+// On HTTP site: Cookie NOT sent
+// On HTTPS site: Cookie IS sent
+```
+
+**Path** - Restrict to URL Path
+```js
+// Cookie only sent for requests to /user/ and below
+document.cookie = "userId=123; Path=/user/";
+
+// Request to /user/profile → Cookie SENT
+// Request to /user/settings → Cookie SENT  
+// Request to /admin → Cookie NOT sent
+// Request to / → Cookie NOT sent
+```
+
+**Domain** - Subdomain Sharing
+```js
+// Cookie sent to all subdomains
+document.cookie = "session=xyz; Domain=.example.com";
+
+// Sent to: example.com, api.example.com, app.example.com
+```
 
 ### Cookie Attributes
 
