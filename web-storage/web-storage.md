@@ -483,3 +483,13 @@ function logout() {
 | **IndexedDB** | 100MB+ | Large data, offline apps, caching |
 
 > **Golden Rule:** Never store sensitive information in client-side storage without proper encryption. Use HttpOnly cookies for authentication tokens.
+
+---
+
+## Try It Yourself
+
+```codepen
+url=https://codepen.io/SACHIN-CHAUHAN-the-builder/pen/dPMRNGB
+height=500
+defaultTab=js,result
+```
